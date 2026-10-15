@@ -1,7 +1,6 @@
 name: ex_job_1
 on:
-  push: 
-    branches: main
+  workflow_dispatch: 
 jobs:
   job1: 
     runs-on: ubuntu-latest
