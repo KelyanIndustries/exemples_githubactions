@@ -16,4 +16,4 @@ jobs:
       - name: Afficher la date au format français
         env:
           DATE_FR: ${{ steps.current-time.outputs.formattedTime }}
-        run: echo "Date actuelle (format français) : $DATE_FR"
+        run: 'echo "Date actuelle (format français) : $DATE_FR"'
