@@ -1,0 +1,38 @@
+name: Matrix
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run build --if-present
+
+  test:
+    needs: build
+    runs-on: ubuntu-${{ matrix.ubuntu }}.04
+    strategy:
+      fail-fast: false
+      matrix:
+        ubuntu: [22, 24]
+        node: [18, 20, 22]
+        browser: [Chrome, Edge, Firefox]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: ./executeBrowserTest --browser=${{ matrix.browser }}
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./uploadRelease.sh

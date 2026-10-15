@@ -12,5 +12,5 @@ jobs:
 
             - name: Display README content
               run: |
-                  echo "Contenu du fichier README.md :"
+                  echo "Contenu du fichier README.md     :"
                   cat README.md
