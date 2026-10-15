@@ -1,0 +1,19 @@
+name: Date actuelle
+
+on:
+  workflow_dispatch:
+
+jobs:
+  date-fr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer l'heure actuelle
+        id: current-time
+        uses: josStorer/get-current-time@v2
+        with:
+          format: DD/MM/YYYY HH:mm:ss
+          timezone: Europe/Paris
+      - name: Afficher la date au format français
+        env:
+          DATE_FR: ${{ steps.current-time.outputs.formattedTime }}
+        run: echo "Date actuelle (format français) : $DATE_FR"
