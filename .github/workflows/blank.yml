@@ -1,17 +1,14 @@
-name: Exercice 1
+name: Exercice 2
 
 on:
-  workflow_dispatch: 
-  
+  pull_request:
+    paths:
+    - '**.yml'
+    - '!**/test/**.yml'
+
 jobs:
   job_ex1:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: afficher le README.md
-      run: cat README.md
-    
-    
+    - run : echo "Je vérifie les fichiers YAML"
