@@ -1,0 +1,16 @@
+name: Contenue Readme
+
+on:
+    workflow_dispatch:
+
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Display README content
+              run: |
+                  echo "Contenu du fichier README.md :"
+                  cat README.md
